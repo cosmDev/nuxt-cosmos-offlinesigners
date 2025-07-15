@@ -16,7 +16,14 @@ A powerful and modern Nuxt 3 module for seamless integration of Cosmos ecosystem
 
 ## 🚀 Quick Setup
 
-### Installation
+### Nuxt install
+
+```bash
+npx nuxi module add @cosmdev/nuxt-cosmos-offlinesigners
+```
+That's it! You can now use Nuxt offlinesigners Module in your Nuxt app ✨
+
+### Manual install
 
 ```bash
 # npm

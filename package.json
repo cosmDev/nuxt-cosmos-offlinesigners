@@ -1,6 +1,6 @@
 {
   "name": "@cosmdev/nuxt-cosmos-offlinesigners",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Nuxt module for integrating Cosmos offline signers (Keplr and Leap)",
   "repository": "cosmDev/nuxt-cosmos-offlinesigners",
   "license": "MIT",
