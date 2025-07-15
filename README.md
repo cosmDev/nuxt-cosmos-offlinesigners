@@ -40,8 +40,8 @@ export default defineNuxtConfig({
   ],
   cosmosOfflineSigners: {
     chainId: 'cosmoshub-4',
-    rpcEndpoint: 'https://cosmos-rpc.polkachu.com',
-    restEndpoint: 'https://cosmos-api.polkachu.com',
+    rpcEndpoint: 'https://cosmos-rpc.cosmdev.com/lcd/atom',
+    restEndpoint: 'https://cosmos-api.cosmdev.com/lcd/atom',
     bech32Prefix: 'cosmos',
     coinDenom: 'ATOM',
     coinMinimalDenom: 'uatom',
@@ -228,8 +228,8 @@ export interface ModuleOptions {
 ```typescript
 cosmosOfflineSigners: {
   chainId: 'cosmoshub-4',
-  rpcEndpoint: 'https://cosmos-rpc.polkachu.com',
-  restEndpoint: 'https://cosmos-api.polkachu.com',
+  rpcEndpoint: 'https://cosmos-rpc.cosmdev.com/lcd/atom',
+  restEndpoint: 'https://cosmos-api.cosmdev.com/lcd/atom',
   bech32Prefix: 'cosmos',
   coinDenom: 'ATOM',
   coinMinimalDenom: 'uatom',
