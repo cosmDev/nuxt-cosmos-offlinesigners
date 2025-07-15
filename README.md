@@ -20,13 +20,13 @@ A powerful and modern Nuxt 3 module for seamless integration of Cosmos ecosystem
 
 ```bash
 # npm
-npm install nuxt-cosmos-offlinesigners
+npm install @cosmdev/nuxt-cosmos-offlinesigners
 
 # yarn
-yarn add nuxt-cosmos-offlinesigners
+yarn add @cosmdev/nuxt-cosmos-offlinesigners
 
 # pnpm
-pnpm add nuxt-cosmos-offlinesigners
+pnpm add @cosmdev/nuxt-cosmos-offlinesigners
 ```
 
 ### Basic Configuration
@@ -36,7 +36,7 @@ Add the module to your `nuxt.config.ts`:
 ```typescript
 export default defineNuxtConfig({
   modules: [
-    'nuxt-cosmos-offlinesigners'
+    '@cosmdev/nuxt-cosmos-offlinesigners'
   ],
   cosmosOfflineSigners: {
     chainId: 'cosmoshub-4',
