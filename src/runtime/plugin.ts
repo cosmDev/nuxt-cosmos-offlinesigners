@@ -9,20 +9,11 @@ declare global {
   }
 }
 
-export default defineNuxtPlugin(async (nuxtApp) => {
+export default defineNuxtPlugin(async () => {
   // Initialize Pinia store early
   if (import.meta.client) {
     // Wait a bit for Pinia to be fully initialized
     await new Promise(resolve => setTimeout(resolve, 100))
-    
-    // Try to initialize the store
-    try {
-      const { useCosmosStore } = await import('../runtime/stores/cosmos')
-      const store = useCosmosStore()
-      console.log('Cosmos store initialized')
-    } catch (error) {
-      console.warn('Could not initialize Cosmos store:', error)
-    }
   }
 
   // Plugin initialization for Cosmos offline signers

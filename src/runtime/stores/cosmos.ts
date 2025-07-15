@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-//import type { ChainInfo, Key } from '@keplr-wallet/types'
+// import type { ChainInfo, Key } from '@keplr-wallet/types'
 
 interface WalletInfo {
   name: string
@@ -63,7 +63,7 @@ export const useCosmosStore = defineStore('cosmos', () => {
   const isWalletAvailable = computed(() => keplrInstalled.value || leapInstalled.value)
   const formattedBalance = computed(() => {
     if (!walletInfo.value?.balance) return '0'
-    const balance = parseFloat(walletInfo.value.balance)
+    const balance = Number.parseFloat(walletInfo.value.balance)
     return (balance / 1000000).toFixed(6) // Convert from uatom to ATOM
   })
 

@@ -1,6 +1,6 @@
 <template>
   <div class="advanced-demo">
-        <CosmosWalletConnect />
+    <CosmosWalletConnect />
     <h3>🚀 Advanced Cosmos Integration Demo</h3>
 
     <div class="demo-grid">
@@ -192,8 +192,15 @@
 <script setup lang="ts">
 import { ref, computed, reactive } from 'vue'
 import { useCosmosWallet } from '../composables/useCosmosWallet'
-import { useCosmosTransactions } from '../composables/useCosmosTransactions'
 import { formatAddress, formatCoin, truncateHash, copyToClipboard } from '../utils'
+
+// Define transaction result interface
+interface TransactionResult {
+  transactionHash?: string
+  hash?: string
+  txhash?: string
+  [key: string]: unknown
+}
 
 const {
   isConnected,
@@ -202,10 +209,6 @@ const {
   signAndBroadcast,
   getAccount,
 } = useCosmosWallet()
-
-const {
-  error: transactionError,
-} = useCosmosTransactions()
 
 // State
 const isLoading = ref(false)
@@ -299,13 +302,16 @@ const executeTransaction = async () => {
 
     const result = await signAndBroadcast(msgs, fee, getMemo())
     let txHash: string
-    
+
     // Handle different response formats
     if (typeof result === 'string') {
       txHash = result
-    } else if (result && typeof result === 'object') {
-      txHash = (result as any).transactionHash || (result as any).hash || 'unknown'
-    } else {
+    }
+    else if (result && typeof result === 'object') {
+      const txResult = result as TransactionResult
+      txHash = txResult.transactionHash || txResult.hash || txResult.txhash || 'unknown'
+    }
+    else {
       txHash = 'unknown'
     }
 

@@ -3,150 +3,222 @@
     <!-- Hero Section -->
     <div class="hero-section">
       <div class="hero-content">
-        <div class="hero-icon">⚛️</div>
+        <div class="hero-icon">
+          ⚛️
+        </div>
         <h1>Advanced Cosmos Demo</h1>
         <p>Explore advanced features of the Nuxt Cosmos Offline Signers module with our interactive demo.</p>
       </div>
       <div class="hero-background">
-        <div class="cosmic-particle"></div>
-        <div class="cosmic-particle"></div>
-        <div class="cosmic-particle"></div>
+        <div class="cosmic-particle" />
+        <div class="cosmic-particle" />
+        <div class="cosmic-particle" />
       </div>
     </div>
 
     <section class="login-section">
-        <div class="connection-status">
-            <div class="status-card" :class="{ 'connected': isConnected, 'not-connected': !isConnected }">
-                <div class="status-visual">
-                    <div class="status-ring" :class="{ 'pulse': isConnecting }">
-                        <div class="status-icon">
-                            <svg v-if="isConnected" viewBox="0 0 24 24" fill="currentColor" class="status-svg">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                            </svg>
-                            <svg v-else viewBox="0 0 24 24" fill="currentColor" class="status-svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="status-content">
-                    <h3>{{ isConnected ? 'Wallet Connected' : 'Wallet Not Connected' }}</h3>
-                    <p v-if="isConnected && walletInfo" class="connection-details">
-                        <span class="address-label">Address:</span>
-                        <code class="address-code">{{ formatAddress(walletInfo.address) }}</code>
-                        <span class="wallet-label">Wallet:</span>
-                        <span class="wallet-name">{{ walletInfo.name || 'Unknown' }}</span>
-                    </p>
-                    <p v-else class="connection-prompt">
-                        Connect your Cosmos wallet to unlock all features
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="wallet-section">
-            <h3 class="section-title">
-                <svg viewBox="0 0 24 24" fill="currentColor" class="section-icon">
-                    <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+      <div class="connection-status">
+        <div
+          class="status-card"
+          :class="{ 'connected': isConnected, 'not-connected': !isConnected }"
+        >
+          <div class="status-visual">
+            <div
+              class="status-ring"
+              :class="{ pulse: isConnecting }"
+            >
+              <div class="status-icon">
+                <svg
+                  v-if="isConnected"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="status-svg"
+                >
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                 </svg>
-                Connect Wallet
-            </h3>
-            <div class="button-group">
-                <button
-                    v-if="!isConnected"
-                    :disabled="isConnecting"
-                    class="connect-btn keplr-btn"
-                    @click="connectKeplr"
+                <svg
+                  v-else
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="status-svg"
                 >
-                    <svg viewBox="0 0 24 24" fill="currentColor" class="btn-icon">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
-                    {{ isConnecting ? 'Connecting...' : 'Connect Keplr' }}
-                </button>
-                <button
-                    v-if="!isConnected && keplrInstalled"
-                    :disabled="isConnecting"
-                    class="connect-btn leap-btn"
-                    @click="connectKeplr"
-                >
-                    <svg viewBox="0 0 24 24" fill="currentColor" class="btn-icon">
-                        <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
-                    </svg>
-                    {{ isConnecting ? 'Connecting...' : 'Connect Leap' }}
-                </button>
-                <button
-                    v-if="isConnected"
-                    class="disconnect-btn"
-                    @click="disconnect"
-                >
-                    <svg viewBox="0 0 24 24" fill="currentColor" class="btn-icon">
-                        <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
-                    </svg>
-                    Disconnect
-                </button>
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg>
+              </div>
             </div>
+          </div>
+          <div class="status-content">
+            <h3>{{ isConnected ? 'Wallet Connected' : 'Wallet Not Connected' }}</h3>
+            <p
+              v-if="isConnected && walletInfo"
+              class="connection-details"
+            >
+              <span class="address-label">Address:</span>
+              <code class="address-code">{{ formatAddress(walletInfo.address) }}</code>
+              <span class="wallet-label">Wallet:</span>
+              <span class="wallet-name">{{ walletInfo.name || 'Unknown' }}</span>
+            </p>
+            <p
+              v-else
+              class="connection-prompt"
+            >
+              Connect your Cosmos wallet to unlock all features
+            </p>
+          </div>
         </div>
+      </div>
+
+      <div class="wallet-section">
+        <h3 class="section-title">
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="section-icon"
+          >
+            <path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+          </svg>
+          Connect Wallet
+        </h3>
+        <div class="button-group">
+          <button
+            v-if="!isConnected"
+            :disabled="isConnecting"
+            class="connect-btn keplr-btn"
+            @click="connectKeplr"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="btn-icon"
+            >
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            {{ isConnecting ? 'Connecting...' : 'Connect Keplr' }}
+          </button>
+          <button
+            v-if="!isConnected && keplrInstalled"
+            :disabled="isConnecting"
+            class="connect-btn leap-btn"
+            @click="connectKeplr"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="btn-icon"
+            >
+              <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z" />
+            </svg>
+            {{ isConnecting ? 'Connecting...' : 'Connect Leap' }}
+          </button>
+          <button
+            v-if="isConnected"
+            class="disconnect-btn"
+            @click="disconnect"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="btn-icon"
+            >
+              <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
+            </svg>
+            Disconnect
+          </button>
+        </div>
+      </div>
     </section>
- 
+
     <section class="api-examples">
       <div class="section-header">
         <h2 class="section-title">
-          <svg viewBox="0 0 24 24" fill="currentColor" class="section-icon">
-            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="section-icon"
+          >
+            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
           </svg>
           API Examples
         </h2>
-        <p class="section-description">Interact with the Cosmos blockchain through these live examples</p>
+        <p class="section-description">
+          Interact with the Cosmos blockchain through these live examples
+        </p>
       </div>
 
       <div class="example-grid">
         <div class="example-card balance-card">
           <div class="card-header">
             <div class="card-icon balance-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
               </svg>
             </div>
             <h3>Query Balance</h3>
-            <p class="card-description">Check your wallet's ATOM balance</p>
+            <p class="card-description">
+              Check your wallet's ATOM balance
+            </p>
           </div>
           <div class="card-actions">
             <button
               :disabled="!isConnected || isQuerying"
-              @click="queryBalance"
               class="action-btn primary-btn"
+              @click="queryBalance"
             >
-              <span v-if="isQuerying" class="loading-spinner"></span>
+              <span
+                v-if="isQuerying"
+                class="loading-spinner"
+              />
               {{ isQuerying ? 'Querying...' : 'Query Balance' }}
             </button>
           </div>
-          <div v-if="balanceResult" class="result-display balance-result">
-            <div class="result-label">Balance:</div>
-            <div class="result-value">{{ balanceResult }}</div>
+          <div
+            v-if="balanceResult"
+            class="result-display balance-result"
+          >
+            <div class="result-label">
+              Balance:
+            </div>
+            <div class="result-value">
+              {{ balanceResult }}
+            </div>
           </div>
         </div>
 
         <div class="example-card delegations-card">
           <div class="card-header">
             <div class="card-icon delegations-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </div>
             <h3>Get Delegations</h3>
-            <p class="card-description">View your staking delegations</p>
+            <p class="card-description">
+              View your staking delegations
+            </p>
           </div>
           <div class="card-actions">
             <button
               :disabled="!isConnected || isQuerying"
-              @click="getDelegations"
               class="action-btn secondary-btn"
+              @click="getDelegations"
             >
-              <span v-if="isQuerying" class="loading-spinner"></span>
+              <span
+                v-if="isQuerying"
+                class="loading-spinner"
+              />
               {{ isQuerying ? 'Loading...' : 'Get Delegations' }}
             </button>
           </div>
-          <div v-if="delegationsResult" class="result-display">
+          <div
+            v-if="delegationsResult"
+            class="result-display"
+          >
             <pre class="json-result">{{ JSON.stringify(delegationsResult, null, 2) }}</pre>
           </div>
         </div>
@@ -154,24 +226,35 @@
         <div class="example-card validators-card">
           <div class="card-header">
             <div class="card-icon validators-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63c-.34-1.02-1.3-1.74-2.46-1.74s-2.12.72-2.46 1.74L13.5 16H16v6h4zM12.5 11.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5S11 9.17 11 10s.67 1.5 1.5 1.5zM5.5 6c1.11 0 2-.89 2-2s-.89-2-2-2-2 .89-2 2 .89 2 2 2zm2.5 16v-6H10l-2.54-7.63C7.12 7.35 6.16 6.63 5 6.63s-2.12.72-2.46 1.74L0 16h2.5v6h5.5z"/>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63c-.34-1.02-1.3-1.74-2.46-1.74s-2.12.72-2.46 1.74L13.5 16H16v6h4zM12.5 11.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5S11 9.17 11 10s.67 1.5 1.5 1.5zM5.5 6c1.11 0 2-.89 2-2s-.89-2-2-2-2 .89-2 2 .89 2 2 2zm2.5 16v-6H10l-2.54-7.63C7.12 7.35 6.16 6.63 5 6.63s-2.12.72-2.46 1.74L0 16h2.5v6h5.5z" />
               </svg>
             </div>
             <h3>List Validators</h3>
-            <p class="card-description">Browse active validators</p>
+            <p class="card-description">
+              Browse active validators
+            </p>
           </div>
           <div class="card-actions">
             <button
               :disabled="isQuerying"
-              @click="getValidators"
               class="action-btn accent-btn"
+              @click="getValidators"
             >
-              <span v-if="isQuerying" class="loading-spinner"></span>
+              <span
+                v-if="isQuerying"
+                class="loading-spinner"
+              />
               {{ isQuerying ? 'Loading...' : 'Get Validators' }}
             </button>
           </div>
-          <div v-if="validatorsResult" class="result-display validators-result">
+          <div
+            v-if="validatorsResult"
+            class="result-display validators-result"
+          >
             <div class="validators-list">
               <div
                 v-for="validator in validatorsResult.slice(0, 5)"
@@ -182,7 +265,9 @@
                   <strong class="validator-name">{{ validator.description.moniker }}</strong>
                   <code class="validator-address">{{ formatAddress(validator.operator_address) }}</code>
                 </div>
-                <div class="validator-badge">Active</div>
+                <div class="validator-badge">
+                  Active
+                </div>
               </div>
             </div>
           </div>
@@ -191,24 +276,35 @@
         <div class="example-card proposals-card">
           <div class="card-header">
             <div class="card-icon proposals-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
               </svg>
             </div>
             <h3>Governance Proposals</h3>
-            <p class="card-description">View governance proposals</p>
+            <p class="card-description">
+              View governance proposals
+            </p>
           </div>
           <div class="card-actions">
             <button
               :disabled="isQuerying"
-              @click="getProposals"
               class="action-btn warning-btn"
+              @click="getProposals"
             >
-              <span v-if="isQuerying" class="loading-spinner"></span>
+              <span
+                v-if="isQuerying"
+                class="loading-spinner"
+              />
               {{ isQuerying ? 'Loading...' : 'Get Proposals' }}
             </button>
           </div>
-          <div v-if="proposalsResult" class="result-display proposals-result">
+          <div
+            v-if="proposalsResult"
+            class="result-display proposals-result"
+          >
             <div class="proposals-list">
               <div
                 v-for="proposal in proposalsResult.slice(0, 3)"
@@ -217,9 +313,14 @@
               >
                 <div class="proposal-header">
                   <span class="proposal-id">#{{ proposal.proposal_id }}</span>
-                  <span class="proposal-status" :class="proposal.status.toLowerCase()">{{ proposal.status }}</span>
+                  <span
+                    class="proposal-status"
+                    :class="proposal.status.toLowerCase()"
+                  >{{ proposal.status }}</span>
                 </div>
-                <h4 class="proposal-title">{{ proposal.content.title }}</h4>
+                <h4 class="proposal-title">
+                  {{ proposal.content.title }}
+                </h4>
               </div>
             </div>
           </div>
@@ -230,20 +331,29 @@
     <section class="utilities-demo">
       <div class="section-header">
         <h2 class="section-title">
-          <svg viewBox="0 0 24 24" fill="currentColor" class="section-icon">
-            <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/>
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="section-icon"
+          >
+            <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" />
           </svg>
           Utility Functions Demo
         </h2>
-        <p class="section-description">Test and explore various utility functions for Cosmos development</p>
+        <p class="section-description">
+          Test and explore various utility functions for Cosmos development
+        </p>
       </div>
 
       <div class="utility-examples">
         <div class="utility-card address-card">
           <div class="utility-header">
             <div class="utility-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
               </svg>
             </div>
             <h4>Address Formatting</h4>
@@ -265,7 +375,10 @@
               </div>
               <div class="result-item">
                 <span class="result-label">Valid:</span>
-                <span class="validation-badge" :class="{ 'valid': isValidCosmosAddress(testAddress), 'invalid': !isValidCosmosAddress(testAddress) }">
+                <span
+                  class="validation-badge"
+                  :class="{ valid: isValidCosmosAddress(testAddress), invalid: !isValidCosmosAddress(testAddress) }"
+                >
                   {{ isValidCosmosAddress(testAddress) ? '✅ Valid' : '❌ Invalid' }}
                 </span>
               </div>
@@ -276,8 +389,11 @@
         <div class="utility-card amount-card">
           <div class="utility-header">
             <div class="utility-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
               </svg>
             </div>
             <h4>Amount Conversion</h4>
@@ -314,8 +430,11 @@
         <div class="utility-card hash-card">
           <div class="utility-header">
             <div class="utility-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z" />
               </svg>
             </div>
             <h4>Hash Utilities</h4>
@@ -339,8 +458,12 @@
                 class="copy-button"
                 @click="copyHash"
               >
-                <svg viewBox="0 0 24 24" fill="currentColor" class="copy-icon">
-                  <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="copy-icon"
+                >
+                  <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
                 </svg>
                 Copy to Clipboard
               </button>
@@ -361,8 +484,8 @@ const {
   getBalance,
   getDelegations: getDelegationsQuery,
   getValidators: getValidatorsQuery,
-  getProposals: getProposalsQuery
-} = useCosmosTransactions() 
+  getProposals: getProposalsQuery,
+} = useCosmosTransactions()
 
 // Local state for demo results and loading
 const isQuerying = ref(false)
@@ -383,7 +506,7 @@ const connectKeplr = async () => {
   }
   catch {
     console.error('Failed to connect Keplr wallet')
-    //error.value = 'Failed to connect Keplr wallet'
+    // error.value = 'Failed to connect Keplr wallet'
   }
 }
 
@@ -1251,7 +1374,7 @@ const copyHash = async () => {
   .hero-content h1 {
     font-size: 2.5rem;
   }
-  
+
   .status-card {
     flex-direction: column;
     text-align: center;

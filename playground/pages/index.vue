@@ -28,9 +28,9 @@
           <h3>🚀 Usage</h3>
           <p>Import the composables in your Nuxt 3 application:</p>
           <pre><code>// In your component
-  const { connectWallet, isConnected } = useCosmosWallet()
-  const { wallet: keplrWallet } = useKeplr()
-  const { wallet: leapWallet } = useLeap()</code></pre>
+ const { connectWallet, isConnected } = useCosmosWallet()
+ const { wallet: keplrWallet } = useKeplr()
+ const { wallet: leapWallet } = useLeap()</code></pre>
         </div>
 
         <div class="info-card">
