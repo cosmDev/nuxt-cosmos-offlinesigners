@@ -4,6 +4,15 @@
 
     <section class="installation">
       <h2>Installation</h2>
+      <h3>Nuxt install</h3>
+      <div class="code-block">
+        <pre><code>npx nuxi module add @cosmdev/nuxt-cosmos-offlinesigners</code></pre>
+      </div>
+
+      That's it! You can now use Nuxt offlinesigners Module in your Nuxt app ✨
+      
+
+      <h3>Manuel install</h3>
       <div class="code-block">
         <pre><code>npm install nuxt-cosmos-offlinesigners</code></pre>
       </div>

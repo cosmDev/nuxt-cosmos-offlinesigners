@@ -2,6 +2,8 @@
 
 A powerful and modern Nuxt 3 module for seamless integration of Cosmos ecosystem wallets (Keplr and Leap) into your decentralized applications.
 
+![MainApp](https://i.imgur.com/4OSL0lx.png)
+
 ## ✨ Features
 
 - 🔗 **Multiple Wallet Support**: Built-in support for Keplr and Leap wallets
